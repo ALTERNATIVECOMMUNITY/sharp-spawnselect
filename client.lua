@@ -35,7 +35,7 @@ RegisterNUICallback("LastLocation", function()
     cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", campos.x, campos.y, campos.z + camZPlus2, 300.00,0.00,0.00, 110.00, false, 0)
     PointCamAtCoord(cam, campos.x, campos.y, campos.z + pointCamCoords2)
     SetCamActiveWithInterp(cam, cam2, cam2Time, true, true)
-    SetEntityCoords(PlayerPedId(), campos.x, campos.y, campos.z)
+    SetEntityCoords(playerPed, campos.x, campos.y, campos.z)
 end)
 
 RegisterNUICallback("SpawnTorget", function()
