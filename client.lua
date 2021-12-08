@@ -1,16 +1,6 @@
-local ESX, selectedspawnposition = nil
+local selectedspawnposition = nil
 local spawn = nil
 local LastLocation = nil
-
-Citizen.CreateThread(function()
-	while ESX == nil do
-		TriggerEvent('esx:getSharedObject', function(obj)
-			ESX = obj
-        end)
-        
-		Citizen.Wait(0)
-	end
-end)
 
 local camZPlus1 = 1500
 local camZPlus2 = 50
@@ -45,7 +35,7 @@ RegisterNUICallback("LastLocation", function()
     cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", campos.x, campos.y, campos.z + camZPlus2, 300.00,0.00,0.00, 110.00, false, 0)
     PointCamAtCoord(cam, campos.x, campos.y, campos.z + pointCamCoords2)
     SetCamActiveWithInterp(cam, cam2, cam2Time, true, true)
-    SetEntityCoords(GetPlayerPed(-1), campos.x, campos.y, campos.z)
+    SetEntityCoords(PlayerPedId(), campos.x, campos.y, campos.z)
 end)
 
 RegisterNUICallback("SpawnTorget", function()
@@ -64,7 +54,7 @@ RegisterNUICallback("SpawnTorget", function()
     cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", campos.x, campos.y, campos.z + camZPlus2, 300.00,0.00,0.00, 110.00, false, 0)
     PointCamAtCoord(cam, campos.x, campos.y, campos.z + pointCamCoords2)
     SetCamActiveWithInterp(cam, cam2, cam2Time, true, true)
-    SetEntityCoords(GetPlayerPed(-1), campos.x, campos.y, campos.z)
+    SetEntityCoords(playerPed, campos.x, campos.y, campos.z)
 end)
 
 RegisterNUICallback("SpawnMRPD", function()
@@ -83,7 +73,7 @@ RegisterNUICallback("SpawnMRPD", function()
     cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", campos.x, campos.y, campos.z + camZPlus2, 300.00,0.00,0.00, 110.00, false, 0)
     PointCamAtCoord(cam, campos.x, campos.y, campos.z + pointCamCoords2)
     SetCamActiveWithInterp(cam, cam2, cam2Time, true, true)
-    SetEntityCoords(GetPlayerPed(-1), campos.x, campos.y, campos.z)
+    SetEntityCoords(playerPed, campos.x, campos.y, campos.z)
 end)
 
 RegisterNUICallback("SpawnPink", function()
@@ -102,7 +92,7 @@ RegisterNUICallback("SpawnPink", function()
     cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", campos.x, campos.y, campos.z + camZPlus2, 300.00,0.00,0.00, 110.00, false, 0)
     PointCamAtCoord(cam, campos.x, campos.y, campos.z + pointCamCoords2)
     SetCamActiveWithInterp(cam, cam2, cam2Time, true, true)
-    SetEntityCoords(GetPlayerPed(-1), campos.x, campos.y, campos.z)
+    SetEntityCoords(playerPed, campos.x, campos.y, campos.z)
 end)
 
 RegisterNUICallback("SpawnTrondheim", function()
@@ -121,7 +111,7 @@ RegisterNUICallback("SpawnTrondheim", function()
     cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", campos.x, campos.y, campos.z + camZPlus2, 300.00,0.00,0.00, 110.00, false, 0)
     PointCamAtCoord(cam, campos.x, campos.y, campos.z + pointCamCoords2)
     SetCamActiveWithInterp(cam, cam2, cam2Time, true, true)
-    SetEntityCoords(GetPlayerPed(-1), campos.x, campos.y, campos.z)
+    SetEntityCoords(playerPed, campos.x, campos.y, campos.z)
 end)
 
 RegisterNUICallback("SpawnTromso", function()
@@ -140,7 +130,7 @@ RegisterNUICallback("SpawnTromso", function()
     cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", campos.x, campos.y, campos.z + camZPlus2, 300.00,0.00,0.00, 110.00, false, 0)
     PointCamAtCoord(cam, campos.x, campos.y, campos.z + pointCamCoords2)
     SetCamActiveWithInterp(cam, cam2, cam2Time, true, true)
-    SetEntityCoords(GetPlayerPed(-1), campos.x, campos.y, campos.z)
+    SetEntityCoords(playerPed, campos.x, campos.y, campos.z)
 end)
 
 RegisterNUICallback("SpawnStrandmotel", function()
@@ -159,7 +149,7 @@ RegisterNUICallback("SpawnStrandmotel", function()
     cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", campos.x, campos.y, campos.z + camZPlus2, 300.00,0.00,0.00, 110.00, false, 0)
     PointCamAtCoord(cam, campos.x, campos.y, campos.z + pointCamCoords2)
     SetCamActiveWithInterp(cam, cam2, cam2Time, true, true)
-    SetEntityCoords(GetPlayerPed(-1), campos.x, campos.y, campos.z)
+    SetEntityCoords(playerPed, campos.x, campos.y, campos.z)
 end)
 
 RegisterNUICallback("SpawnGardermoen", function()
@@ -178,7 +168,7 @@ RegisterNUICallback("SpawnGardermoen", function()
     cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", campos.x, campos.y, campos.z + camZPlus2, 300.00,0.00,0.00, 110.00, false, 0)
     PointCamAtCoord(cam, campos.x, campos.y, campos.z + pointCamCoords2)
     SetCamActiveWithInterp(cam, cam2, cam2Time, true, true)
-    SetEntityCoords(GetPlayerPed(-1), campos.x, campos.y, campos.z)
+    SetEntityCoords(playerPed, campos.x, campos.y, campos.z)
 end)
 
 local cloudOpacity = 0.01
@@ -222,7 +212,7 @@ function SpawnPlayer(Location)
     DestroyCam(cam, true)
     SetCamActive(cam2, false)
     DestroyCam(cam2, true)
-    SetEntityVisible(GetPlayerPed(-1), true)
+    SetEntityVisible(playerPed, true)
     Citizen.Wait(500)
     SetNuiFocus(false, false)
 
